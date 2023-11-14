@@ -1,0 +1,43 @@
+/* Dashboard styling */
+.dashboard-container {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background-color: #f4f4f4;
+    padding: 20px;
+  }
+
+  .chart-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 20px;
+  }
+
+  .chart-title {
+    font-size: 48px;
+    color: gold;
+    margin-bottom: 10px;
+    text-align: center;
+
+  }
+
+  .recharts-tooltip-wrapper {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+  }
+
+  .recharts-legend-wrapper {
+    padding: 10px;
+  }
+  
+  .recharts-cartesian-axis-tick {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .recharts-responsive-container {
+    border-radius: 8px;
+  }
