@@ -13,6 +13,33 @@ import {
   Legend,
 } from 'recharts';
 
+const LineChartComponent = ({ data }) => (
+    <ResponsiveContainer width="100%" height={300}>
+      <LineChart data={data}>
+        <XAxis dataKey="game_name" />
+        <YAxis />
+        <Tooltip />
+        <CartesianGrid strokeDasharray="3 3" />
+        <Line type="monotone" dataKey="hours_played" stroke="#8884d8" />
+        <Legend />
+      </LineChart>
+    </ResponsiveContainer>
+  );
+
+const BarChartComponent = ({ data }) => (
+  <ResponsiveContainer width="100%" height={300}>
+    <BarChart data={data}>
+      <XAxis dataKey="game_name" />
+      <YAxis />
+      <Tooltip />
+      <CartesianGrid strokeDasharray="3 3" />
+      <Bar dataKey="hours_played" fill="#8884d8" />
+      <Bar dataKey="proficiency" fill="#82ca9d" />
+      <Legend />
+    </BarChart>
+  </ResponsiveContainer>
+);
+
 const Chart = ({ chartId, containerStyle, onClick }) => {
   const [chartData, setChartData] = useState([]);
   const [chartType, setChartType] = useState('line');
@@ -34,43 +61,16 @@ const Chart = ({ chartId, containerStyle, onClick }) => {
   if (!chartData || chartData.length === 0) {
     return <div>Loading...</div>;
   }
-
-  let ChartComponent;
-  switch (chartType) {
-    case 'line':
-      ChartComponent = (
-        <LineChart data={chartData}>
-          <XAxis dataKey="game_name" />
-          <YAxis />
-          <Tooltip />
-          <CartesianGrid strokeDasharray="3 3" />
-          <Line type="monotone" dataKey="hours_played" stroke="#8884d8" />
-          <Legend />
-        </LineChart>
-      );
-      break;
-    case 'bar':
-      ChartComponent = (
-        <BarChart data={chartData}>
-          <XAxis dataKey="game_name" />
-          <YAxis />
-          <Tooltip />
-          <CartesianGrid strokeDasharray="3 3" />
-          <Bar dataKey="hours_played" fill="#8884d8" />
-          <Bar dataKey="proficiency" fill="#82ca9d" />
-          <Legend />
-        </BarChart>
-      );
-      break;
-    default:
-      ChartComponent = <div>Unsupported chart type.</div>;
-  }
-
+  
   return (
     <div style={containerStyle} onClick={onClick}>
-      <ResponsiveContainer width="100%" height={300}>
-        {ChartComponent}
-      </ResponsiveContainer>
+        {chartType === 'line' ? (
+          <LineChartComponent data={chartData} />
+        ) : chartType === 'bar' ? (
+          <BarChartComponent data={chartData} />
+        ) : (
+          <div>Unsupported chart type.</div>
+        )}
     </div>
   );
 };
