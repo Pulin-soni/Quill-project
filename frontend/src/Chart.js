@@ -54,7 +54,6 @@ const Chart = ({ chartId, containerStyle, onClick }) => {
         console.error("Error fetching chart data:", error);
       }
     };
-
     fetchChartData();
   }, [chartId]);
 
